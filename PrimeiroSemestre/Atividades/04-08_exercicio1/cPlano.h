@@ -15,7 +15,7 @@
 
 class cPlano {
 public:
-     int x1, y1, x2,  y2;
+     int x1, y1, x2, y2;
     cPlano();
     cPlano(const cPlano& orig);
     virtual ~cPlano();

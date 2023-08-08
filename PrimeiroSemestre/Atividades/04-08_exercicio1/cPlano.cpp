@@ -37,7 +37,7 @@ void cPlano::lerPontos(){
 
 float cPlano::calcularDE(){
     
-    float d=0.f;
+    float d=0;
     
     d = sqrt(pow(this->x2-this->x1, 2) + pow(this->y2-this->y1, 2));
     
