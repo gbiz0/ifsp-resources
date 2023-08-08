@@ -7,7 +7,7 @@
  * File:   cCalculo.h
  * Author: jardi
  *
- * Created on 4 de Agosto de 2023, 11:02
+ * Created on 7 de Agosto de 2023, 22:17
  */
 
 #ifndef CCALCULO_H
@@ -15,8 +15,8 @@
 
 class cCalculo {
 public:
-    int a, b, c;
-    
+     int a, b, c;
+     
     cCalculo();
     cCalculo(const cCalculo& orig);
     virtual ~cCalculo();

@@ -7,7 +7,7 @@
  * File:   cPlano.cpp
  * Author: jardi
  * 
- * Created on 4 de Agosto de 2023, 09:35
+ * Created on 7 de Agosto de 2023, 20:40
  */
 
 #include "cPlano.h"
@@ -23,7 +23,6 @@ cPlano::cPlano(const cPlano& orig) {
 
 cPlano::~cPlano() {
 }
-
 void cPlano::lerPontos(){
     
     cout << "Digite o ponto X1\n" << endl;

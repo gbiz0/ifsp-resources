@@ -7,7 +7,7 @@
  * File:   cPlano.h
  * Author: jardi
  *
- * Created on 4 de Agosto de 2023, 09:35
+ * Created on 7 de Agosto de 2023, 20:40
  */
 
 #ifndef CPLANO_H
@@ -15,17 +15,13 @@
 
 class cPlano {
 public:
-    
-    int x1, y1, x2,  y2;
-    
+     int x1, y1, x2,  y2;
     cPlano();
     cPlano(const cPlano& orig);
     virtual ~cPlano();
     
     void lerPontos();
     float calcularDE();
-    
-    
 private:
 
 };

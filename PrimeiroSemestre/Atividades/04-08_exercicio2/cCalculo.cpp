@@ -7,7 +7,7 @@
  * File:   cCalculo.cpp
  * Author: jardi
  * 
- * Created on 4 de Agosto de 2023, 11:02
+ * Created on 7 de Agosto de 2023, 22:17
  */
 
 #include "cCalculo.h"
