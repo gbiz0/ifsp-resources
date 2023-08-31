@@ -14,7 +14,10 @@ public class C_For_Ex04 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Altura altura = new Altura();
+        
+        altura.calcular();
+        altura.show();
     }
     
 }
