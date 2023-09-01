@@ -16,24 +16,24 @@
 #include <string>
 using namespace std;
 
-struct Pessoa{
-    string nome;
-    int    cpf;
-    float  altura, peso;
-    string sexo;
-};
-
 class cPessoa {
 public:
+    struct Pessoa{
+        string nome;
+        int    cpf;
+        float  altura, peso;
+        string sexo;
+    }vet[3];
+
     cPessoa();
     cPessoa(const cPessoa& orig);
     virtual ~cPessoa();
     
     void  receberDados();
-    void  ordenarPessoas(Pessoa pArray[], int n); 
-    void  imprimirLista(Pessoa *array, int quant);
-    float imc(Pessoa *array, int i);
-    int   localizaPessoa(Pessoa *array, int pesqCPF, int quant);
+    void  ordenarPessoas(Pessoa *vet, int quant); 
+    void  imprimirLista(Pessoa *vet, int quant);
+    int   localizaPessoa(Pessoa *vet, int pesqCPF, int quant);
+    int   PesquisaBinaria ( int k[], int chave , int N);
 private:
 
 };
