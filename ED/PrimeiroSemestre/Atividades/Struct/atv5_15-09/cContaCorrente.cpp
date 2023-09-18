@@ -22,29 +22,43 @@ cContaCorrente::cContaCorrente(const cContaCorrente& orig) {
 cContaCorrente::~cContaCorrente() {
 }
 
-void cContaCorrente :: menu(){
-    Conta vet [3];
+void cContaCorrente :: receberDados(){
+    int i=0;
+    Conta vet[3];
+    while(i<3){
+        cout << "Nome: ";
+        cin>>vet[i].nome;
+        cout << "CPF: ";
+        cin>>vet[i].cpf;
+        cout << "Deposito Inicial: ";
+        cin>>vet[i].saldo;
+        i++;
+    }
+    this->menu(vet);
+}
+
+void cContaCorrente :: menu(Conta *vet){
+    int i;
     int posConta=0, cpf=0;
     int opc;
     
-    do{ 
         cout << "Digite 1 para criar conta" <<endl;
         cout << "Digite 2 para pesquisar conta" <<endl;
         cout << "Digite 3 para imprimir conta" <<endl;
         cout << "Digite 4 para sair" <<endl;
         cin >> opc;
-    
-        switch(opc){
-            case 1: this ->iniciarConta(vet);break;
-            case 2: this ->operacoesConta(vet);break;
-            case 3: 
-                cout<<"Digite CPF";
-                cin>>cpf;
-                posConta = this->pesqSeq(vet, cpf);
-                this->imprimirConta(vet, posConta);break;
-            case 4: break;
+        
+        if (opc == 1) {
+            this->iniciarConta(vet, i);
+        }else if(opc == 2){
+            this->operacoesConta(vet);
+        }else if(opc == 3){
+            this->imprimirConta(vet, posConta);
+        }else if(opc == 4){
+            cout << "Saindo...";
+        }else {
+            cout << "Opção inválida!!";
         }
-    }while ((opc>=1)||(opc<=4));
 }
 
 void cContaCorrente :: iniciarConta(Conta *vet, int i){
@@ -58,10 +72,10 @@ void cContaCorrente :: iniciarConta(Conta *vet, int i){
 
 void cContaCorrente :: imprimirConta(Conta* vet, int posConta){
     
-    cout << "Conta: " << posConta << endl;
-    cout << vet [posConta].nome;
-    cout << vet [posConta].cpf;
-    cout << vet [posConta].saldo;
+    cout << "Número da Conta: " << posConta+1 << endl;
+    cout << vet [posConta].nome << endl;
+    cout << vet [posConta].cpf << endl;
+    cout << vet [posConta].saldo << endl;
 }
 int cContaCorrente::pesqSeq(Conta *vet, int cpf){
     for(int i=0;i<=2;i++){
@@ -77,7 +91,7 @@ void cContaCorrente :: operacoesConta(Conta* vet){
     cout<<"Digite o CPF do cliente: "<<endl;
     cin>>pesqCPF;
     
-    posicao = this->pesqSeq(Conta *vet, int cpf);
+    posicao = this->pesqSeq(vet, pesqCPF);
     
     if(posicao!=-1){
         cout<<"Digite 1 para saque: "<<endl;

@@ -22,11 +22,12 @@ struct Conta{
 };
 class cContaCorrente {
 public:
-    void menu();
+    void menu(Conta *vet);
     void iniciarConta(Conta *vet, int i);
     void operacoesConta(Conta *vet);
     void imprimirConta(Conta* vet, int posConta);
-    void pesqSeq(Conta *vet, int cpf);
+    int pesqSeq(Conta *vet, int cpf);
+    void receberDados();
     
     cContaCorrente();
     cContaCorrente(const cContaCorrente& orig);

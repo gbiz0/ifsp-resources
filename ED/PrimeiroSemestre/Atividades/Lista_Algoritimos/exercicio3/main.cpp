@@ -7,12 +7,12 @@
  * File:   main.cpp
  * Author: gbiz0
  *
- * Created on 15 de setembro de 2023, 11:15
+ * Created on 18 de setembro de 2023, 13:20
  */
 
 #include <cstdlib>
 
-#include "cContaCorrente.h"
+#include "cIdade.h"
 
 using namespace std;
 
@@ -20,8 +20,8 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    cContaCorrente obj;
-    obj.receberDados();
+    cIdade obj;
+    obj.lerIdade();
     return 0;
 }
 

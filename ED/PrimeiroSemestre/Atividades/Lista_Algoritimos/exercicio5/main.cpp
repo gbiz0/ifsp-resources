@@ -7,12 +7,12 @@
  * File:   main.cpp
  * Author: gbiz0
  *
- * Created on 15 de setembro de 2023, 11:15
+ * Created on 18 de setembro de 2023, 17:06
  */
 
 #include <cstdlib>
 
-#include "cContaCorrente.h"
+#include "cNota.h"
 
 using namespace std;
 
@@ -20,8 +20,8 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    cContaCorrente obj;
-    obj.receberDados();
+    cNota obj;
+    obj.media();
     return 0;
 }
 
