@@ -15,9 +15,7 @@
 
 class cRecursividade {
 public:
-    fatorial();
-    tabuada();
-    
+    int fatorial(int a);    
     cRecursividade();
     cRecursividade(const cRecursividade& orig);
     virtual ~cRecursividade();

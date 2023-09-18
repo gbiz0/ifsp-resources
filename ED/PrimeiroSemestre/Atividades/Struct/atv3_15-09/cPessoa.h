@@ -18,11 +18,14 @@ using namespace std;
 struct Pessoa{
     string nome;
     int cpf;
+    int idade;
 };
 class cPessoa {
 public:
-    lerDados();
-    procurarDados();
+    void lerDados();
+    void Ordenador(Pessoa *vet, int quant);
+    int procurarDados(Pessoa *vet, int pesqCPF,int quant);
+    int procurarDadosB(Pessoa *vet, int pesqCPF, int quant);
     
     cPessoa();
     cPessoa(const cPessoa& orig);

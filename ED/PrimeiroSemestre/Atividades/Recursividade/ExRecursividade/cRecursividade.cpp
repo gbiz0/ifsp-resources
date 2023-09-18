@@ -11,6 +11,7 @@
  */
 
 #include "cRecursividade.h"
+#include <iostream>
 using namespace std;
 
 cRecursividade::cRecursividade() {
@@ -23,6 +24,9 @@ cRecursividade::~cRecursividade() {
 }
 
 int cRecursividade :: fatorial(int a){
+    cout << "Escreva um número: ";
+    cin >> a;
+            
     if (a > 1){
         return (a * fatorial (a - 1));
     }else 

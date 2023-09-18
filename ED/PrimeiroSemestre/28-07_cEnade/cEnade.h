@@ -15,6 +15,10 @@
 
 class cEnade {
 public:
+    int M[3][4];
+    void insert();
+    void print();
+    
     cEnade();
     cEnade(const cEnade& orig);
     virtual ~cEnade();
