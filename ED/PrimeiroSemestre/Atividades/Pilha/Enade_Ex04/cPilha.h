@@ -13,20 +13,26 @@
 #ifndef CPILHA_H
 #define CPILHA_H
 
+struct no{
+    int valor;
+    struct no *ant;
+};
+
 class cPilha {
     
-    struct no{
-        int valor;
-        struct no *ant;
-    }*topo, *aux;
     
 public:
+     no *topo, *aux;
+    
     cPilha();
     void menu();
     void inserir();
     void listar();
     void remover();
-    void meio();
+    no* meio(int meio);
+    bool vazio(struct no *campo);
+    void exibirValorMeio();
+    
     cPilha(const cPilha& orig);
     virtual ~cPilha();
 private:

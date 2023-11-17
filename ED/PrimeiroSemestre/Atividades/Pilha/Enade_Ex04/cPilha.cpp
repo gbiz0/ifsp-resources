@@ -57,29 +57,26 @@ void cPilha :: menu(){
     } while(true);
 }
 
+bool cPilha::vazio(struct no *campo) {
+    return campo == NULL;
+}
+
 void cPilha :: inserir(){
-    for (int i=0; i<3; i++) {
+    int x;
 
-        cout << "Digite um valor: ";
-        this -> aux = (struct no *) malloc (sizeof(struct no));
- 
-        int valor;
-        cin >> valor; // this -> aux -> valor;
-        
-        if(this->existe(valor)){
-          cout << valor << " Já existe!";
-          continue;
-        }
+    cout << "\nEntre com o numero a inserir: ";
+    cin>>x;
 
-        this->aux->valor = valor;
-        
-        if (this->inicio == NULL) {
-            this -> inicio = this -> aux; 
-        }else{ 
-            fim -> prox = aux;
-        }
-        this->fim = this-> aux; 
-    }
+    this->aux = (struct no *) malloc(sizeof (aux));
+    this->aux->valor = x;
+    this->aux->ant = this->topo;
+    this->topo = this->aux;
+
+    cout << this->aux << "\n";
+    cout << this->topo << "\n";
+    cout << this->aux->ant << "\n";
+    cout << this->topo << "\n";
+    cout << "\nElemento inserido!\n\n";
 
 }
 
@@ -93,12 +90,46 @@ void cPilha :: remover(){
     cout<<"Removido com sucesso!";
     
 }
+void cPilha::exibirValorMeio() {
+    cout << "\n\nO valor do meio da pilha é: " << this->meio()->valor;
+}
 
-void cPilha :: meio(int meio){
-    int cont = 0;
-    for (aux = topo; aux !=  NULL; aux =aux->ant){
-        cont ++;
+no* cPilha :: meio(int meio){
+        int cont = 0;
+
+    this->aux = this->topo;
+
+    while (!this->vazio(this->aux)) {
+        cont++;
+        this->aux = this->aux->ant;
     }
+
+    int meio = cont / 2;
+
+    this->aux = this->topo;
+    cont = 0;
+
+    while (!this->vazio(this->aux)) {
+        if (cont == meio) {
+            return this->aux;
+        }
+        cont++;
+        this->aux = this->aux->ant;
+    }
+    return NULL;
     
 }
+
+void cPilha::listar() {
+
+    no *p;
+    p = this->topo;
+    while (!vazio(p->ant)) {
+        cout << "\nITEM" << p->valor;
+        p = p->ant;
+    }
+    cout << "\nITEM" << p->valor << "\n\n";
+
+}
+
 
