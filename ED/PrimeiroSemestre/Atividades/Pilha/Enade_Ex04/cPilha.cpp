@@ -30,7 +30,7 @@ void cPilha :: menu(){
         cout <<"Escreva a opção que deseja: \n";
         cout <<"1- Inserir \n";
         cout <<"2- Remover \n";
-        cout <<"3- Pesquisa \n";
+        cout <<"3- Pesquisa Meio \n";
         cout <<"4- Listar \n";
         cin >>opc;
         
@@ -90,11 +90,9 @@ void cPilha :: remover(){
     cout<<"Removido com sucesso!";
     
 }
-void cPilha::exibirValorMeio() {
-    cout << "\n\nO valor do meio da pilha é: " << this->meio()->valor;
-}
 
-no* cPilha :: meio(int meio){
+
+no* cPilha :: meio(){
         int cont = 0;
 
     this->aux = this->topo;
@@ -105,17 +103,20 @@ no* cPilha :: meio(int meio){
     }
 
     int meio = cont / 2;
+    int valor = 0;
 
     this->aux = this->topo;
     cont = 0;
 
     while (!this->vazio(this->aux)) {
         if (cont == meio) {
-            return this->aux;
+            valor = this->aux->valor;
+            break;
         }
         cont++;
         this->aux = this->aux->ant;
     }
+    cout << "\n\nO valor do meio da pilha é: \n\n" << valor;
     return NULL;
     
 }

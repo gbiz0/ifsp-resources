@@ -29,9 +29,8 @@ public:
     void inserir();
     void listar();
     void remover();
-    no* meio(int meio);
+    no* meio();
     bool vazio(struct no *campo);
-    void exibirValorMeio();
     
     cPilha(const cPilha& orig);
     virtual ~cPilha();
