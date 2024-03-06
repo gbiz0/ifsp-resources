@@ -4,17 +4,26 @@
  */
 package br.com.projeto_1.view;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import br.com.projeto_1.dto.ClienteDTO;
+import br.com.projeto_1.ctr.ClienteCTR;
 /**
  *
  * @author gbiz0
  */
 public class ClienteVIEW extends javax.swing.JInternalFrame {
-
+    ClienteDTO clienteDTO = new ClienteDTO();
+    ClienteCTR clienteCTR = new ClienteCTR();
+    int gravar_alterar;
     /**
      * Creates new form ClienteVIEW
      */
     public ClienteVIEW() {
         initComponents();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, false, true);
     }
 
     /**
@@ -42,18 +51,18 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         cidade_cli = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        estado_cli = new javax.swing.JComboBox<>();
         cep_cli = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cpf_cli = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         rg_cli = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         jLabel1.setText("Cliente");
@@ -76,11 +85,11 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel7.setText("Cidade:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " SP", " PR", " SC", " RS", " MS", " RO", " AC", " AM", " RR", " PA", " AP", " TO", " MA", " RN", " PB", " PE", " AL", " SE", " BA", " MG", " RJ", " MT", " GO", " DF", " PI", " CE", " ES", " " }));
-        jComboBox1.setToolTipText("");
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        estado_cli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SP", "PR ", "SC", "RS ", "MS", "RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "RJ", "MT", "GO ", "DF", "PI", "CE", "ES", " " }));
+        estado_cli.setToolTipText("");
+        estado_cli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                estado_cliActionPerformed(evt);
             }
         });
 
@@ -93,38 +102,43 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel10.setText("RG:");
 
-        jButton1.setText("Novo");
-
-        jButton2.setText("Salvar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNovoActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Excluir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Sair");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnSair.setText("Sair");
+        btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                btnSairMouseClicked(evt);
             }
         });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
@@ -137,15 +151,15 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 216, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnNovo)
                         .addGap(39, 39, 39)
-                        .addComponent(jButton2)
+                        .addComponent(btnSalvar)
                         .addGap(39, 39, 39)
-                        .addComponent(jButton3)
+                        .addComponent(btnCancelar)
                         .addGap(39, 39, 39)
-                        .addComponent(jButton4)
+                        .addComponent(btnExcluir)
                         .addGap(39, 39, 39)
-                        .addComponent(jButton5)
+                        .addComponent(btnSair)
                         .addGap(145, 145, 145))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -187,7 +201,7 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(estado_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +237,7 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
                     .addComponent(cidade_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estado_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cep_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,53 +248,108 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btnNovo)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnSair))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void estado_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_cliActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_estado_cliActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if(gravar_alterar == 1){
+           gravar();
+           limpaCampos();
+           liberaCampos(false);
+            liberaBotoes(true, false, false, false, true);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnSairMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseClicked
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        liberaCampos(true);
+        liberaBotoes(false, true, true, false, true);
+        gravar_alterar = 1;    }//GEN-LAST:event_btnNovoActionPerformed
+    private void liberaCampos (boolean a){
+        nome_cli.setEnabled(a);
+        logradouro_cli.setEnabled(a);
+        numero_cli.setEnabled(a);
+        bairro_cli.setEnabled(a);
+        cidade_cli.setEnabled(a);
+        estado_cli.setEnabled(a);
+        cep_cli.setEnabled(a);
+        cpf_cli.setEnabled(a);
+        rg_cli.setEnabled(a);
+    }
+    private void limpaCampos(){
+        nome_cli.setText("");
+        logradouro_cli.setText("");
+        numero_cli.setText("");
+        bairro_cli.setText("");
+        cidade_cli.setText("");
+        cep_cli.setText("");
+        cpf_cli.setText("");
+        rg_cli.setText("");
+    }
+    
+    private void liberaBotoes(boolean a, boolean b, boolean c, boolean d, boolean e){
+        btnNovo.setEnabled(a);
+        btnSalvar.setEnabled(b);
+        btnCancelar.setEnabled(c);
+        btnExcluir.setEnabled(d);
+        btnSair.setEnabled(e);
+    }
 
-
+    public void gravar() {
+        try {
+            clienteDTO.setNome_cli(nome_cli.getText());
+            clienteDTO.setLogradouro_cli(logradouro_cli.getText());
+            clienteDTO.setNumero_cli(Integer.parseInt(numero_cli.getText()));
+            clienteDTO.setBairro_cli(bairro_cli.getText());
+            clienteDTO.setCidade_cli(cidade_cli.getText());
+            clienteDTO.setEstado_cli(estado_cli.getSelectedItem().toString());
+            clienteDTO.setCep_cli(cep_cli.getText());
+            clienteDTO.setCpf_cli(cpf_cli.getText());
+            clienteDTO.setRg_cli(rg_cli.getText());
+            
+            JOptionPane.showMessageDialog(null, clienteCTR.inserirCliente(clienteDTO));
+        } catch (Exception e) {
+            System.out.println("Erro ao gravar " +e.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairro_cli;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField cep_cli;
     private javax.swing.JTextField cidade_cli;
     private javax.swing.JTextField cpf_cli;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> estado_cli;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
