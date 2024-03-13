@@ -58,7 +58,7 @@ public class ClienteDAO {
                 case 1: 
                     comando = "Select c.* "+
                               "from cliente c "+
-                              "where nome_cli like '"+clienteDTO.getNome_cli()+"%' order by c.nome_cli";
+                              "where nome_cli ilike '"+clienteDTO.getNome_cli()+"%' order by c.nome_cli";
                 break;
                 case 2: 
                     comando = "Select c.* "+
@@ -78,4 +78,63 @@ public class ClienteDAO {
             return rs;
         }
     }
+    
+    public boolean alterarCliente (ClienteDTO clienteDTO){
+        try {
+            ConexaoDAO.ConnectDB();
+            
+            pstmt = ConexaoDAO.con.prepareStatement(
+                     "UPDATE cliente SET "
+                    + "nome_cli = ?, "
+                    + "logradouro_cli = ?, "
+                    + "numero_cli = ?, "
+                    + "bairro_cli = ?, "
+                    + "cidade_cli = ?, "
+                    + "estado_cli = ?, "
+                    + "cep_cli = ?, "
+                    + "cpf_cli = ?, "
+                    + "rg_cli = ?"
+                    + "WHERE id_cli = ?;");
+            pstmt.setString(1, clienteDTO.getNome_cli());
+            pstmt.setString(2, clienteDTO.getLogradouro_cli());
+            pstmt.setInt(3, clienteDTO.getNumero_cli());
+            pstmt.setString(4, clienteDTO.getBairro_cli());
+            pstmt.setString(5, clienteDTO.getCidade_cli());
+            pstmt.setString(6, clienteDTO.getEstado_cli());
+            pstmt.setString(7, clienteDTO.getCep_cli()); 
+            pstmt.setString(8, clienteDTO.getCpf_cli());
+            pstmt.setString(9, clienteDTO.getRg_cli());
+            pstmt.setInt(10, clienteDTO.getId_cli());
+            pstmt.execute();
+            ConexaoDAO.con.commit();
+            pstmt.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Problema ao abrir base de dados! " + e.getMessage());
+            return false;
+        }
+        finally{
+            ConexaoDAO.CloseDB();
+        }
+    }
+    public boolean excluirCliente (ClienteDTO clienteDTO){
+        try {
+            ConexaoDAO.ConnectDB();
+            
+            pstmt = ConexaoDAO.con.prepareStatement("DELETE FROM cliente where id_cli = ?");
+            pstmt.setInt(1, clienteDTO.getId_cli());            
+            pstmt.execute();
+            ConexaoDAO.con.commit();
+            pstmt.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Problema ao abrir base de dados! " + e.getMessage());
+            return false;
+        }
+        finally{
+            ConexaoDAO.CloseDB();
+        }
+    }
+    
+    
 }//close class
