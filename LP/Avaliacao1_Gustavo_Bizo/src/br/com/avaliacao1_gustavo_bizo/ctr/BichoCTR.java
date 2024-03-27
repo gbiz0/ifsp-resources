@@ -39,7 +39,7 @@ public class BichoCTR {
         return rs;
     }
     
-    public String alterarCliente (BichoDTO bichoDTO){
+    public String alterarBicho (BichoDTO bichoDTO){
         try {
             if (bichoDAO.alterarBicho(bichoDTO)){
                 return "Bicho alterado com Sucesso!";
@@ -52,7 +52,7 @@ public class BichoCTR {
         }
     }
     
-    public String excluirCliente (BichoDTO bichoDTO){
+    public String excluirBicho (BichoDTO bichoDTO){
         try {
             if (bichoDAO.excluirBicho(bichoDTO)){
                 return "Bicho Excluído com Sucesso!";

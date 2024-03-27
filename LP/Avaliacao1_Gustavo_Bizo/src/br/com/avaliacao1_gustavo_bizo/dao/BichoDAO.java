@@ -23,8 +23,8 @@ public class BichoDAO {
         try {
             ConexaoDAO.ConnectDB();
             
-            pstmt = ConexaoDAO.con.prepareStatement("INSERT INTO cliente (nome_cli, numero_cli, bairro_cli, cidade_cli, estado_cli, cpf_cli, telefone_cli, nome_bicho, tipo_aposta, valor_aposta, banca_aposta)"
-                    + "values (?,?,?,?,?,?,?,?,?,?,?);");
+            pstmt = ConexaoDAO.con.prepareStatement("INSERT INTO bicho (nome_cli, numero_cli, bairro_cli, cidade_cli, estado_cli, cpf_cli, telefone_cli, nome_bicho, tipo_aposta, valor_aposta)"
+                    + "values (?,?,?,?,?,?,?,?,?,?);");
             pstmt.setString(1, bichoDTO.getNome_cli());
             pstmt.setInt(2, bichoDTO.getNumero_cli());
             pstmt.setString(3, bichoDTO.getBairro_cli());
@@ -35,7 +35,6 @@ public class BichoDAO {
             pstmt.setString(8, bichoDTO.getNome_bicho());
             pstmt.setString(9, bichoDTO.getTipo_aposta());
             pstmt.setFloat(10, bichoDTO.getValor_aposta());
-            pstmt.setString(11, bichoDTO.getBanca_aposta());
             pstmt.execute();
             ConexaoDAO.con.commit();
             pstmt.close();
@@ -59,7 +58,7 @@ public class BichoDAO {
                 case 1: 
                     comando = "Select b.* "+
                               "from bicho b "+
-                              "where nome_cli ilike '"+bichoDTO.getNome_cli()+"%' order by c.nome_cli";
+                              "where nome_cli ilike '"+bichoDTO.getNome_cli()+"%' order by b.nome_cli";
                 break;
                 case 2: 
                     comando = "Select b.* "+
@@ -85,13 +84,17 @@ public class BichoDAO {
             ConexaoDAO.ConnectDB();
             
             pstmt = ConexaoDAO.con.prepareStatement(
-                     "UPDATE cliente SET "
+                     "UPDATE bicho SET "
                     + "nome_cli = ?, "
                     + "numero_cli = ?, "
                     + "bairro_cli = ?, "
                     + "cidade_cli = ?, "
                     + "estado_cli = ?, "
                     + "cpf_cli = ?, "
+                    + "telefone_cli = ?,"
+                    + "nome_bicho = ?,"
+                    + "tipo_aposta = ?,"
+                    + "valor_aposta = ?"
                     + "WHERE id_cli = ?;");
             pstmt.setString(1, bichoDTO.getNome_cli());
             pstmt.setInt(2, bichoDTO.getNumero_cli());
@@ -99,7 +102,11 @@ public class BichoDAO {
             pstmt.setString(4, bichoDTO.getCidade_cli());
             pstmt.setString(5, bichoDTO.getEstado_cli());
             pstmt.setString(6, bichoDTO.getCpf_cli());
-            pstmt.setInt(7, bichoDTO.getId_cli());
+            pstmt.setString(7, bichoDTO.getTelefone_cli());
+            pstmt.setString(8, bichoDTO.getNome_bicho());
+            pstmt.setString(9, bichoDTO.getTipo_aposta());
+            pstmt.setFloat(10,bichoDTO.getValor_aposta());
+            pstmt.setInt(11, bichoDTO.getId_cli());
             pstmt.execute();
             ConexaoDAO.con.commit();
             pstmt.close();

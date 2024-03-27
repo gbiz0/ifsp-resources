@@ -9,7 +9,7 @@ package br.com.avaliacao1_gustavo_bizo.dto;
  * @author gbiz0
  */
 public class BichoDTO {
-    private String nome_cli, bairro_cli, cidade_cli, estado_cli, cpf_cli, telefone_cli, nome_bicho, tipo_aposta, banca_aposta;
+    private String nome_cli, bairro_cli, cidade_cli, estado_cli, cpf_cli, telefone_cli, nome_bicho, tipo_aposta;
     private int id_cli, numero_cli;
     private float valor_aposta;
 
@@ -76,15 +76,6 @@ public class BichoDTO {
     public void setTipo_aposta(String tipo_aposta) {
         this.tipo_aposta = tipo_aposta;
     }
-
-    public String getBanca_aposta() {
-        return banca_aposta;
-    }
-
-    public void setBanca_aposta(String banca_aposta) {
-        this.banca_aposta = banca_aposta;
-    }
-
     public int getId_cli() {
         return id_cli;
     }

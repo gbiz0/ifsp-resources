@@ -124,7 +124,6 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel9.setText("CPF:");
 
-        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_1/view/imagens/novo.png"))); // NOI18N
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +131,6 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_1/view/imagens/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +138,6 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_1/view/imagens/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +145,6 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             }
         });
 
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_1/view/imagens/excluir.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +152,6 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_1/view/imagens/sair.png"))); // NOI18N
         btnSair.setText("Sair");
         btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -175,7 +170,6 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
         jLabel12.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jLabel12.setText("Nome:");
 
-        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_1/view/imagens/pesquisar.png"))); // NOI18N
         btnPesquisar.setText("OK");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,15 +349,16 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
                     .addComponent(telefone_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valor_aposta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(nome_bicho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
-                        .addComponent(tipo_aposta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(nome_bicho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(tipo_aposta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(valor_aposta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
@@ -460,6 +455,10 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
         cidade_cli.setEnabled(a);
         estado_cli.setEnabled(a);
         cpf_cli.setEnabled(a);
+        telefone_cli.setEnabled(a);
+        nome_bicho.setEnabled(a);
+        tipo_aposta.setEnabled(a);
+        valor_aposta.setEnabled(a);
     }
 
     private void limpaCampos() {
@@ -468,6 +467,8 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
         bairro_cli.setText("");
         cidade_cli.setText("");
         cpf_cli.setText("");
+        telefone_cli.setText("");
+        valor_aposta.setText("");
     }
 
     private void liberaBotoes(boolean a, boolean b, boolean c, boolean d, boolean e) {
@@ -487,7 +488,9 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             bichoDTO.setEstado_cli(estado_cli.getSelectedItem().toString());
             bichoDTO.setCpf_cli(cpf_cli.getText());
             bichoDTO.setTelefone_cli(bairro_cli.getText());
-            
+            bichoDTO.setNome_bicho(nome_bicho.getSelectedItem().toString());
+            bichoDTO.setTipo_aposta(tipo_aposta.getSelectedItem().toString());
+            bichoDTO.setValor_aposta(Float.parseFloat(valor_aposta.getText()));
             JOptionPane.showMessageDialog(null, bichoCTR.inserirBicho(bichoDTO));
         } catch (Exception e) {
             System.out.println("Erro ao gravar " + e.getMessage());
@@ -504,7 +507,9 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 modelo_jtl_consultar_bicho.addRow(new Object[]{
                     rs.getString("id_cli"),
-                    rs.getString("nome_cli")
+                    rs.getString("nome_cli"),
+                    rs.getString("nome_bicho"),
+                    rs.getString("valor_aposta")
                 });
             }
         } catch (Exception erTab) {
@@ -528,7 +533,10 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
                 estado_cli.setSelectedItem(rs.getString("estado_cli"));
                 cpf_cli.setText(rs.getString("cpf_cli"));
                 telefone_cli.setText(rs.getString("telefone_cli"));
-
+                nome_bicho.setSelectedItem(rs.getString("nome_bicho"));
+                tipo_aposta.setSelectedItem(rs.getString("tipo_aposta"));
+                valor_aposta.setText(rs.getString("valor_aposta"));
+                
                 gravar_alterar = 2;
                 liberaCampos(true);
             }
@@ -546,17 +554,20 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             bichoDTO.setEstado_cli(estado_cli.getSelectedItem().toString());
             bichoDTO.setCpf_cli(cpf_cli.getText());
             bichoDTO.setTelefone_cli(telefone_cli.getText());
+            bichoDTO.setNome_bicho(nome_bicho.getSelectedItem().toString());
+            bichoDTO.setTipo_aposta(tipo_aposta.getSelectedItem().toString());
+            bichoDTO.setValor_aposta(Float.parseFloat(valor_aposta.getText()));
+            
             JOptionPane.showMessageDialog(null, bichoCTR.alterarBicho(bichoDTO));
 
         } catch (Exception erTab) {
             System.out.println("Erro ao alterar: " + erTab);
         }
     }
-
     public void excluir() {
         if (JOptionPane.showConfirmDialog(null, "Deseja excluir o bicho?", "Aviso!",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            JOptionPane.showInputDialog(null, bichoCTR.excluirBicho(bichoDTO));
+            JOptionPane.showMessageDialog(null, bichoCTR.excluirBicho(bichoDTO));
         };
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
