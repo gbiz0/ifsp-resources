@@ -536,7 +536,7 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
                 nome_bicho.setSelectedItem(rs.getString("nome_bicho"));
                 tipo_aposta.setSelectedItem(rs.getString("tipo_aposta"));
                 valor_aposta.setText(rs.getString("valor_aposta"));
-                
+
                 gravar_alterar = 2;
                 liberaCampos(true);
             }
@@ -554,16 +554,29 @@ public class BichoVIEW extends javax.swing.JInternalFrame {
             bichoDTO.setEstado_cli(estado_cli.getSelectedItem().toString());
             bichoDTO.setCpf_cli(cpf_cli.getText());
             bichoDTO.setTelefone_cli(telefone_cli.getText());
-            bichoDTO.setNome_bicho(nome_bicho.getSelectedItem().toString());
-            bichoDTO.setTipo_aposta(tipo_aposta.getSelectedItem().toString());
-            bichoDTO.setValor_aposta(Float.parseFloat(valor_aposta.getText()));
-            
+            if (bichoDTO.getNome_bicho() == null) {
+                bichoDTO.setNome_bicho(nome_bicho.getSelectedItem().toString());
+            } else {
+                nome_bicho.setSelectedItem(bichoDTO.getNome_bicho());
+            }
+            if (bichoDTO.getTipo_aposta() == null) {
+                bichoDTO.setTipo_aposta(tipo_aposta.getSelectedItem().toString());
+            } else {
+                tipo_aposta.setSelectedItem(bichoDTO.getTipo_aposta());
+            }
+
+            if (bichoDTO.getValor_aposta() == 0) {
+                bichoDTO.setValor_aposta(Float.parseFloat(valor_aposta.getText()));
+            } else {
+                valor_aposta.setText(String.valueOf(bichoDTO.getValor_aposta()));
+            }
             JOptionPane.showMessageDialog(null, bichoCTR.alterarBicho(bichoDTO));
 
         } catch (Exception erTab) {
             System.out.println("Erro ao alterar: " + erTab);
         }
     }
+
     public void excluir() {
         if (JOptionPane.showConfirmDialog(null, "Deseja excluir o bicho?", "Aviso!",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
