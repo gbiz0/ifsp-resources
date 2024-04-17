@@ -42,6 +42,11 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuFornecedor.setMnemonic('s');
         itemMenuFornecedor.setText("Fornecedor");
+        itemMenuFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuFornecedorActionPerformed(evt);
+            }
+        });
         menuCadastro.add(itemMenuFornecedor);
 
         itemMenuProduto.setMnemonic('a');
@@ -83,6 +88,10 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         }      
     }//GEN-LAST:event_menuSairMouseClicked
 
+    private void itemMenuFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuFornecedorActionPerformed
+        abreFornecedorVIEW();
+    }//GEN-LAST:event_itemMenuFornecedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -116,6 +125,12 @@ public class PrincipalVIEW extends javax.swing.JFrame {
                 new PrincipalVIEW().setVisible(true);
             }
         });
+    }
+    private void abreFornecedorVIEW(){
+        FornecedorVIEW fornecedorVIEW = new FornecedorVIEW();
+        this.desktopPane.add(fornecedorVIEW);
+        fornecedorVIEW.setVisible(true);
+        fornecedorVIEW.setPosicao();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.projeto_2.view;
+
 import br.com.projeto_2.dao.FornecedorDAO;
 import br.com.projeto_2.dto.FornecedorDTO;
 import br.com.projeto_2.ctr.FornecedorCTR;
@@ -17,28 +18,34 @@ import java.text.SimpleDateFormat;
  * @author gbiz0
  */
 public class FornecedorVIEW extends javax.swing.JInternalFrame {
+
     SimpleDateFormat data_format = new SimpleDateFormat("dd/mm/yyyy");
-    
+
     FornecedorDTO fornecedorDTO = new FornecedorDTO();
     FornecedorDAO fornecedorDAO = new FornecedorDAO();
     FornecedorCTR fornecedorCTR = new FornecedorCTR();
-    
+
     int gravar_alterar;
-    
+
     ResultSet rs;
     DefaultTableModel modelo_jtl_consultar_fornecedor;
+
     /**
      * Creates new form FornecedorVIEW
      */
     public FornecedorVIEW() {
         initComponents();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, false, true);
+
+        modelo_jtl_consultar_fornecedor = (DefaultTableModel) jtl_consultar_fornecedor.getModel();
     }
 
-    public void setPosicao(){
+    public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
     }
-    
+
     public void gravar() {
         try {
             fornecedorDTO.setNome_for(nome_for.getText());
@@ -50,40 +57,41 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
             System.out.println("Erro ao gravar " + e.getMessage());
         }
     }
-    
+
     public void alterar() {
         try {
             fornecedorDTO.setNome_for(nome_for.getText());
             fornecedorDTO.setCnpj_for(cnpj_for.getText());
             fornecedorDTO.setTel_for(tel_for.getText());
             fornecedorDTO.setData_cad_for(data_format.parse(data_cad_for.getText()));
-            
+
             JOptionPane.showMessageDialog(null, fornecedorCTR.alterarFornecedor(fornecedorDTO));
         } catch (Exception e) {
             System.out.println("Erro ao alterar " + e.getMessage());
         }
     }
-    
+
     public void excluir() {
         if (JOptionPane.showConfirmDialog(null, "Deseja excluir o fornecedor?", "Aviso!",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, fornecedorCTR.excluirFornecedor(fornecedorDTO));
         };
     }
-    
+
     private void liberaCampos(boolean a) {
         nome_for.setEnabled(a);
         cnpj_for.setEnabled(a);
         tel_for.setEnabled(a);
         data_cad_for.setEnabled(a);
-        
+
     }
+
     private void limpaCampos() {
         nome_for.setText("");
         cnpj_for.setText("");
         tel_for.setText("");
         data_cad_for.setText("");
-        
+
     }
 
     private void liberaBotoes(boolean a, boolean b, boolean c, boolean d, boolean e) {
@@ -93,6 +101,45 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
         btnExcluir.setEnabled(d);
         btnSair.setEnabled(e);
     }
+
+    public void preencheTabela(String nome_for) {
+        try {
+            modelo_jtl_consultar_fornecedor.setNumRows(0);
+            fornecedorDTO.setNome_for(nome_for);
+
+            rs = fornecedorCTR.consultarFornecedor(fornecedorDTO, 1);
+
+            while (rs.next()) {
+                modelo_jtl_consultar_fornecedor.addRow(new Object[]{
+                    rs.getString("id_for"),
+                    rs.getString("nome_for"),});
+            }
+        } catch (Exception erTab) {
+            System.out.println("Erro SQL: " + erTab);
+        } finally {
+            fornecedorCTR.CloseDB();
+        }
+    }
+
+    public void preencheCampos(int id_for) {
+        try {
+            fornecedorDTO.setId_for(id_for);
+            rs = fornecedorCTR.consultarFornecedor(fornecedorDTO, 2);
+
+            if (rs.next()) {
+                limpaCampos();
+                nome_for.setText(rs.getString("nome_for"));
+                cnpj_for.setText(rs.getString("cnpj_for"));
+                tel_for.setText(rs.getString("tel_for"));
+                data_cad_for.setText(rs.getString("data_cad_for"));
+                gravar_alterar = 2;
+                liberaCampos(true);
+            }
+        } catch (Exception erTab) {
+            System.out.println("Erro SQL: " + erTab);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,7 +204,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
 
         jScrollPane3.setViewportView(tel_for);
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         jLabel5.setText("Fornecedor");
 
         jtl_consultar_fornecedor.setModel(new javax.swing.table.DefaultTableModel(
@@ -171,6 +218,11 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
                 "ID", "Nome"
             }
         ));
+        jtl_consultar_fornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtl_consultar_fornecedorMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jtl_consultar_fornecedor);
 
         jLabel6.setText("NOME:");
@@ -178,9 +230,19 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
         jScrollPane5.setViewportView(pesquisa_nome);
 
         btnPesquisar.setText("OK");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/novo.png"))); // NOI18N
         btnNovo.setText("Novo");
@@ -192,12 +254,27 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/excluir.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
-        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/salvar.png"))); // NOI18N
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/sair.png"))); // NOI18N
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         try {
             data_cad_for.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -261,7 +338,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
                         .addGap(179, 179, 179))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(497, Short.MAX_VALUE)
+                    .addContainerGap(488, Short.MAX_VALUE)
                     .addComponent(jLabel5)
                     .addGap(392, 392, 392)))
         );
@@ -316,8 +393,57 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+        liberaCampos(true);
+        liberaBotoes(false, true, true, false, true);
+        gravar_alterar = 1;
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if (gravar_alterar == 1) {
+            gravar();
+            gravar_alterar = 0;
+        } else if (gravar_alterar == 2) {
+            alterar();
+            gravar_alterar = 0;
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro no sistema!");
+        }
+        limpaCampos();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, false, true);
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        preencheTabela(pesquisa_nome.getText());
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void jtl_consultar_fornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtl_consultar_fornecedorMouseClicked
+        preencheCampos(Integer.parseInt(String.valueOf(
+                jtl_consultar_fornecedor.getValueAt(
+                        jtl_consultar_fornecedor.getSelectedRow(), 0))));
+        liberaBotoes(false, true, true, true, true);
+    }//GEN-LAST:event_jtl_consultar_fornecedorMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        excluir();
+        limpaCampos();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, false, true);
+
+        modelo_jtl_consultar_fornecedor.setNumRows(0);
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpaCampos();
+        liberaCampos(false);
+        modelo_jtl_consultar_fornecedor.setRowCount(0);
+        liberaBotoes(true, false, false, false, true);
+        this.gravar_alterar = 0;
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
