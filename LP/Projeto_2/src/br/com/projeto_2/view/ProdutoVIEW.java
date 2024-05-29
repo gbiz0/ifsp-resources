@@ -111,7 +111,7 @@ public class ProdutoVIEW extends javax.swing.JInternalFrame {
         modelo_jtl_consultar_fornecedor.setNumRows(0);
     }
 
-    public void preencheTabela(String nome_prod) {
+    public void preencheTabelaProduto(String nome_prod) {
         try {
             modelo_jtl_consultar_produto.setNumRows(0);
             produtoDTO.setNome_prod(nome_prod);
@@ -130,7 +130,7 @@ public class ProdutoVIEW extends javax.swing.JInternalFrame {
         }
     }
 
-    public void preencheCampos(int id_prod) {
+    public void preencheCamposProduto(int id_prod) {
         try {
             fornecedorDTO.setId_for(id_prod);
             rs = produtoCTR.consultarProduto(produtoDTO, 2);
@@ -303,6 +303,11 @@ public class ProdutoVIEW extends javax.swing.JInternalFrame {
                 "ID", "Nome"
             }
         ));
+        jtl_consultar_produto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtl_consultar_produtoMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(jtl_consultar_produto);
 
         btnPesquisarProduto.setText("OK");
@@ -494,12 +499,19 @@ public class ProdutoVIEW extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-        preencheTabela(pesquisa_nome_produto.getText());
+        preencheTabelaProduto(pesquisa_nome_produto.getText());
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
 
     private void btnPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarFornecedorActionPerformed
-        // TODO add your handling code here:
+        preencheTabelaFornecedor(pesquisa_nome_fornecedor.getText());
     }//GEN-LAST:event_btnPesquisarFornecedorActionPerformed
+
+    private void jtl_consultar_produtoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtl_consultar_produtoMouseClicked
+        preencheCamposProduto(Integer.parseInt(String.valueOf(
+                jtl_consultar_produto.getValueAt(
+                jtl_consultar_produto.getSelectedRow(),0))));
+        liberaBotoes(false, true, true, true, true);
+    }//GEN-LAST:event_jtl_consultar_produtoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

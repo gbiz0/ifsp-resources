@@ -5,6 +5,9 @@
 package br.com.projeto_2.view;
 
 import javax.swing.JOptionPane;
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -28,7 +31,13 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
+        ImageIcon imageicon = new ImageIcon(getClass().getResource("imagens/tela_inicial.jpg"));
+        Image image = imageicon.getImage();
+        desktopPane = new javax.swing.JDesktopPane(){
+            public void paintComponent (Graphics graphics){
+                graphics.drawImage (image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         menuBar = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         itemMenuFornecedor = new javax.swing.JMenuItem();
@@ -39,6 +48,11 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         menuCadastro.setMnemonic('f');
         menuCadastro.setText("Cadastro");
+        menuCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroActionPerformed(evt);
+            }
+        });
 
         itemMenuFornecedor.setMnemonic('s');
         itemMenuFornecedor.setText("Fornecedor");
@@ -51,6 +65,16 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuProduto.setMnemonic('a');
         itemMenuProduto.setText("Produto");
+        itemMenuProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemMenuProdutoMouseClicked(evt);
+            }
+        });
+        itemMenuProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuProdutoActionPerformed(evt);
+            }
+        });
         menuCadastro.add(itemMenuProduto);
 
         menuBar.add(menuCadastro);
@@ -92,6 +116,16 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         abreFornecedorVIEW();
     }//GEN-LAST:event_itemMenuFornecedorActionPerformed
 
+    private void itemMenuProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuProdutoMouseClicked
+    }//GEN-LAST:event_itemMenuProdutoMouseClicked
+
+    private void menuCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroActionPerformed
+    }//GEN-LAST:event_menuCadastroActionPerformed
+
+    private void itemMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuProdutoActionPerformed
+        abreProdutoVIEW();
+    }//GEN-LAST:event_itemMenuProdutoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -131,6 +165,12 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         this.desktopPane.add(fornecedorVIEW);
         fornecedorVIEW.setVisible(true);
         fornecedorVIEW.setPosicao();
+    }
+    private void abreProdutoVIEW(){
+        ProdutoVIEW produtoVIEW = new ProdutoVIEW();
+        this.desktopPane.add(produtoVIEW);
+        produtoVIEW.setVisible(true);
+        produtoVIEW.setPosicao();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
