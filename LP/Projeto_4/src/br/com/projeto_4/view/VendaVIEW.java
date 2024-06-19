@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package br.com.projeto_3.view;
-import br.com.projeto_3.ctr.VendaCTR;
-import br.com.projeto_3.dto.VendaDTO;
-import br.com.projeto_3.dto.ProdutoDTO;
-import br.com.projeto_3.ctr.ProdutoCTR;
-import br.com.projeto_3.dto.ClienteDTO;
-import br.com.projeto_3.ctr.ClienteCTR;
+package br.com.projeto_4.view;
+import br.com.projeto_4.ctr.VendaCTR;
+import br.com.projeto_4.dto.VendaDTO;
+import br.com.projeto_4.dto.ProdutoDTO;
+import br.com.projeto_4.ctr.ProdutoCTR;
+import br.com.projeto_4.dto.ClienteDTO;
+import br.com.projeto_4.ctr.ClienteCTR;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import java.sql.*;
