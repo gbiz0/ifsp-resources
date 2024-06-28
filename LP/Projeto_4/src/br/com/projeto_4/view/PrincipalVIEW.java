@@ -44,6 +44,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         itemMenuProduto = new javax.swing.JMenuItem();
         itemMenuCliente = new javax.swing.JMenuItem();
         itemMenuVenda = new javax.swing.JMenuItem();
+        itemMenuFuncionario = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,6 +96,14 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         });
         menuCadastro.add(itemMenuVenda);
 
+        itemMenuFuncionario.setText("Funcionário");
+        itemMenuFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuFuncionarioActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(itemMenuFuncionario);
+
         menuBar.add(menuCadastro);
 
         menuSair.setMnemonic('h');
@@ -145,50 +154,20 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuProdutoActionPerformed
 
     private void itemMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuClienteActionPerformed
-        // TODO add your handling code here:
+        abreClienteVIEW();
     }//GEN-LAST:event_itemMenuClienteActionPerformed
 
     private void itemMenuVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuVendaActionPerformed
         abreVendaVIEW();
     }//GEN-LAST:event_itemMenuVendaActionPerformed
 
+    private void itemMenuFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuFuncionarioActionPerformed
+        abreFuncionarioVIEW();
+    }//GEN-LAST:event_itemMenuFuncionarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PrincipalVIEW().setVisible(true);
-            }
-        });
-    }
     private void abreFornecedorVIEW(){
         FornecedorVIEW fornecedorVIEW = new FornecedorVIEW();
         this.desktopPane.add(fornecedorVIEW);
@@ -207,11 +186,24 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         vendaVIEW.setVisible(true);
         vendaVIEW.setPosicao();
     }
+    private void abreClienteVIEW(){
+        ClienteVIEW clienteVIEW = new ClienteVIEW();
+        this.desktopPane.add(clienteVIEW);
+        clienteVIEW.setVisible(true);
+        clienteVIEW.setPosicao();
+    }
+     private void abreFuncionarioVIEW(){
+        FuncionarioVIEW funcionarioVIEW = new FuncionarioVIEW();
+        this.desktopPane.add(funcionarioVIEW);
+        funcionarioVIEW.setVisible(true);
+        funcionarioVIEW.setPosicao();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem itemMenuCliente;
     private javax.swing.JMenuItem itemMenuFornecedor;
+    private javax.swing.JMenuItem itemMenuFuncionario;
     private javax.swing.JMenuItem itemMenuProduto;
     private javax.swing.JMenuItem itemMenuVenda;
     private javax.swing.JMenuBar menuBar;
