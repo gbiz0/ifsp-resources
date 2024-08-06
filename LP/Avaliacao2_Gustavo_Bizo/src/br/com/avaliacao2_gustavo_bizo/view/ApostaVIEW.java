@@ -154,31 +154,36 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
         btnSair.setEnabled(d);
     }
     private boolean verificaPreenchimento(){
-        if(jtl_consultar_cli.getSelectedRowCount() <= 0){
-            JOptionPane.showMessageDialog(null, "Deve ser selecionado um Cliente");
-            jtl_consultar_bicho_selecionado.requestFocus();
-            return false;
-        } else if (jtl_consultar_bicho_selecionado.getRowCount() <= 0){
-            JOptionPane.showMessageDialog(null, "É necessário adicionar pelo menos um bicho na aposta");
+    // Verifica se um cliente foi selecionado
+    if(jtl_consultar_cli.getSelectedRowCount() <= 0){
+        JOptionPane.showMessageDialog(null, "Deve ser selecionado um Cliente!");
+        jtl_consultar_cli.requestFocus();
+        return false;
+    }
+    // Verifica se há pelo menos um bicho adicionado
+    else if (jtl_consultar_bicho_selecionado.getRowCount() <= 0){
+        JOptionPane.showMessageDialog(null, "É necessário adicionar pelo menos um bicho na aposta");
+        jtl_consultar_bicho_selecionado.requestFocus();
+        return false;
+    } 
+    // Verifica se a quantidade de cada bicho foi informada
+    else {
+        int verifica = 0;
+        for(int i = 0; i < jtl_consultar_bicho_selecionado.getRowCount(); i++){
+            if(String.valueOf(jtl_consultar_bicho_selecionado.getValueAt(i, 3)).equalsIgnoreCase("null")){
+                verifica++;
+            }
+        }
+        if(verifica > 0){
+            JOptionPane.showMessageDialog(null, "A quantidade de cada bicho apostado deve ser informada");
             jtl_consultar_bicho_selecionado.requestFocus();
             return false;
         } else {
-            int verifica = 0;
-            for (int cont=0; cont < jtl_consultar_bicho_selecionado.getRowCount(); cont ++){
-                if(String.valueOf(jtl_consultar_bicho_selecionado.getValueAt(
-                cont, 3)).equalsIgnoreCase("null")){
-                    verifica ++;
-                }
-            }
-            if(verifica > 0){
-                JOptionPane.showMessageDialog(null, "A quantidade de cada bicho apostado deve ser informado");
-                jtl_consultar_bicho_selecionado.requestFocus();
-                return false;
-            } else {
-                return true;
-            }
+            return true;
         }
     }
+}
+
     
     public ApostaVIEW() {
         initComponents();
@@ -366,14 +371,14 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jtl_consultar_bicho_selecionado);
 
-        btnBichoAdd.setText("ADD");
+        btnBichoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/avaliacao2_gustavo_bizo/view/images/prod_add.png"))); // NOI18N
         btnBichoAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBichoAddActionPerformed(evt);
             }
         });
 
-        btnBichoRem.setText("DELETE");
+        btnBichoRem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/avaliacao2_gustavo_bizo/view/images/prod_rem.png"))); // NOI18N
         btnBichoRem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBichoRemActionPerformed(evt);

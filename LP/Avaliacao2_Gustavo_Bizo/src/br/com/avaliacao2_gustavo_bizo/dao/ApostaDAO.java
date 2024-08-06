@@ -22,13 +22,13 @@ public class ApostaDAO {
     public boolean inserirAposta(ApostaDTO apostaDTO, ClienteDTO clienteDTO, JTable bicho) {
         try {
             ConexaoDAO.ConnectDB();
-
             stmt = ConexaoDAO.con.createStatement();
             stmt1 = ConexaoDAO.con.createStatement();
             
             String comando1 = "INSERT INTO aposta (valor_aposta, id_cli) values ("
                     + apostaDTO.getVal_aposta() + ", "
                     + clienteDTO.getId_cli() + ")";
+            
             stmt.execute(comando1.toUpperCase(), Statement.RETURN_GENERATED_KEYS);
             rs = stmt.getGeneratedKeys();
             rs.next();
@@ -43,6 +43,7 @@ public class ApostaDAO {
                 stmt1.execute(comando2);
             }
             ConexaoDAO.con.commit();
+            
             stmt.close();
             stmt1.close();
             rs.close();
