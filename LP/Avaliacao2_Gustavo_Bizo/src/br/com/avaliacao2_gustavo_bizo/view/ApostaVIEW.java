@@ -31,6 +31,15 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
     DefaultTableModel modelo_jtl_consultar_cli;
     DefaultTableModel modelo_jtl_consultar_bicho;
     DefaultTableModel modelo_jtl_consultar_bicho_selecionado;
+    public ApostaVIEW() {
+        initComponents();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, true);
+        
+        modelo_jtl_consultar_cli = (DefaultTableModel) jtl_consultar_cli.getModel();
+        modelo_jtl_consultar_bicho = (DefaultTableModel) jtl_consultar_bicho.getModel();
+        modelo_jtl_consultar_bicho_selecionado = (DefaultTableModel) jtl_consultar_bicho_selecionado.getModel();
+    }
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
@@ -183,18 +192,6 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
         }
     }
 }
-
-    
-    public ApostaVIEW() {
-        initComponents();
-        liberaCampos(false);
-        liberaBotoes(true, false, false, true);
-        
-        modelo_jtl_consultar_cli = (DefaultTableModel) jtl_consultar_cli.getModel();
-        modelo_jtl_consultar_bicho = (DefaultTableModel) jtl_consultar_bicho.getModel();
-        modelo_jtl_consultar_bicho_selecionado = (DefaultTableModel) jtl_consultar_bicho_selecionado.getModel();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -270,6 +267,7 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
         jLabel2.setText("Total Apostas:");
 
         TotalAposta.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        TotalAposta.setForeground(new java.awt.Color(51, 255, 51));
         TotalAposta.setText("0.00");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -335,7 +333,7 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Bicho"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Apostas"));
 
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel4.setText("Descrição:");
@@ -355,10 +353,7 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
 
         jtl_consultar_bicho_selecionado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Valor", "QTDE"
@@ -548,8 +543,7 @@ public class ApostaVIEW extends javax.swing.JInternalFrame {
 
     private void btnBichoAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBichoAddActionPerformed
         adicionaBichoSelecionado(
-            Integer.parseInt(String.valueOf(jtl_consultar_bicho.getValueAt(
-                jtl_consultar_bicho.getSelectedRow(), 0))),
+      Integer.parseInt(String.valueOf(jtl_consultar_bicho.getValueAt( jtl_consultar_bicho.getSelectedRow(), 0))),
     String.valueOf(jtl_consultar_bicho.getValueAt(jtl_consultar_bicho.getSelectedRow(), 1)),
     Double.parseDouble(String.valueOf(jtl_consultar_bicho.getValueAt(jtl_consultar_bicho.getSelectedRow(), 2)))
     );
