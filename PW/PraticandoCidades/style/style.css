@@ -1,0 +1,73 @@
+body {
+    background-color: #d3d3d3;
+}
+
+
+
+.estado {
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.sao-paulo {
+    background-color: #ffecc8;
+    color: #d46060;
+}
+
+
+.rio-janeiro {
+    background-color: #d2e0fb;
+    color: #3469a5;
+}
+
+.minas-gerais {
+    background-color: #fefae0;
+    color: #8ca385;
+}
+
+
+.info-list span {
+    font-weight: bold;
+    color: black;
+}
+
+.map-container {
+    margin: 15px 0;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 15px 0;
+    background-color: white;
+}
+ table .head {
+    background-color: gray;
+    font-weight: bold;  
+    color: black;
+}
+table tr td {
+    color: black;
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+
+
+a:hover {
+    text-decoration: underline;
+}
