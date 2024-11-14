@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praticando 2 - Caixas verdes</title>
+    <style>
+        .container {
+            width: 100%;
+        }
+
+        .box {
+            background-color: green;
+            margin: 10px;
+        }
+
+        .box-small {
+            width: 100px;
+            height: 100px;
+            float: right;
+        }
+
+        .box-medium {
+            width: 500px;
+            height: 150px;
+            float: left;
+        }
+
+        .box-large {
+            width: 200px;
+            height: 500px;
+        }
+
+        .box-large-left {
+            float: left;
+        }
+
+        .box-large-right {
+            float: right;
+        }
+
+        .break {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <h2>Praticando 2 - Caixas verdes</h2>
+
+    <div class="container">
+        <div class="box box-small"></div>
+        <div class="box box-small"></div>
+        <div class="box box-small"></div>
+
+        <div class="break"></div>
+
+        <div class="box box-medium"></div>
+        <div class="box box-medium"></div>
+
+        <div class="break"></div>
+
+        <div class="box box-large box-large-left"></div>
+        <div class="box box-large box-large-right"></div>
+        <div class="box box-large box-large-right"></div>
+    </div>
+</body>
+</html>
