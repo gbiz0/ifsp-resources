@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praticando 1 - Formulários</title>
+  </head>
+  <body>
+    <h1>Praticando 1 - Formulários</h1>
+    <form action="">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" required />
+      <br />
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="seuemail@gmail.com"
+        required
+      />
+      <br />
+      <label for="carro">Marca de carro preferida:</label>
+      <select name="carro" id="carro" required>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+      <br />
+      <label for="obs">Observação:</label><br />
+      <textarea name="obs" id="obs" cols="30" rows="5" required></textarea>
+      <br />
+      <label for="">Linguagens Web favorita: </label>
+      <input type="radio" name="html" id="html" />HTML
+      <input type="radio" name="css" id="css" />CSS
+      <input type="radio" name="js" id="js" />JavaScript
+      <br />
+      <label for="">Filmes que quero assistir quando lançar:</label>
+      <br />
+      <input type="checkbox" name="filme" id="filme1" />Filme 1<br />
+      <input type="checkbox" name="filme" id="filme2" />Filme 2<br />
+      <input type="checkbox" name="filme" id="filme3" />Filme 3<br />
+      <br />
+      <input type="submit" value="Enviar" />
+      <input type="submit" value="Limpar" />
+    </form>
+  </body>
+</html>
