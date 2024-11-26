@@ -10,11 +10,15 @@
         background: linear-gradient(to right, blue, green);
         color: black;
       }
+      .display {
+        display: inline-block;
+      }
       .form-container {
         display: flex;
         justify-content: center;
         align-items: center;
       }
+
       .languages {
         display: flex;
         justify-content: space-around;
@@ -28,7 +32,7 @@
       .buttons {
         display: flex;
         justify-content: space-around;
-    }
+      }
       .buttons button {
         padding: 10px 20px;
         font-size: 1em;
@@ -42,9 +46,9 @@
     <h1>Praticando 2 - Formulário HTML Estilizado</h1>
     <div class="form-container">
       <form action="#">
-        <label for="name">Nome</label>
+        <label class="display" for="name">Nome</label>
         <input type="text" id="name" name="name" /><br />
-        <label for="email">E-mail</label>
+        <label class="display" for="email">E-mail</label>
         <input
           type="email"
           id="email"
@@ -52,7 +56,7 @@
           placeholder="seu@email.aqui"
         /><br />
 
-        <label for="car-brand">Marca de carro preferida</label>
+        <label class="display" for="car-brand">Marca de carro preferida</label>
         <select id="car-brand" name="car-brand">
           <option value="chevrolet">Chevrolet</option>
           <option value="ford">Ford</option>
@@ -60,12 +64,12 @@
           <option value="toyota">Toyota</option></select
         ><br />
 
-        <label for="observations">Observações</label>
+        <label class="display" for="observations">Observações</label>
         <textarea id="observations" name="observations" rows="4"></textarea
         ><br />
 
         <div class="languages">
-          <label for="">Linguagens Web favorita: </label>
+          <label class="display" for="">Linguagens Web favorita: </label>
           <input type="radio" name="html" id="html" />
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/3/38/HTML5_Badge.svg"
@@ -84,7 +88,8 @@
         </div>
 
         <div class="movies">
-          <label>Filmes que eu quero ver quando lançar:</label><br />   
+          <label class="display">Filmes que eu quero ver quando lançar:</label
+          ><br />
           <input type="checkbox" name="filme" id="filme1" />Filme 1<br />
           <input type="checkbox" name="filme" id="filme2" />Filme 2<br />
           <input type="checkbox" name="filme" id="filme3" />Filme 3<br />
