@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Praticando 2 - JavaScript - Mini calculadora</h1>
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-2 mb-3">
+                <label for="num1" class="form-label">Número 1</label>
+                <input type="number" id="n1" class="form-control">
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="num2" class="form-label">Número 2</label>
+                <input type="number" id="n2" class="form-control">
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="resultado" class="form-label">Resultado</label>
+                <input type="number" id="resultado" class="form-control" readonly>
+            </div>
+            <div class="col-md-4 d-flex align-items-end mb-3">
+                <button class="btn btn-primary me-2" onclick="soma()">+</button>
+                <button class="btn btn-primary me-2" onclick="subtracao()">-</button>
+                <button class="btn btn-primary me-2" onclick="multiplicacao()">x</button>
+                <button class="btn btn-primary" onclick="divisao()">/</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function soma() {
+            let n1 = document.getElementById("n1").value;
+            let n2 = document.getElementById("n2").value;
+            let resultado = document.getElementById("resultado");
+            resultado.value = Number(n1) + Number(n2);
+          }
+          
+          function subtracao() {
+            let n1 = document.getElementById("n1").value;
+            let n2 = document.getElementById("n2").value;
+            let resultado = document.getElementById("resultado");
+            resultado.value = Number(n1) - Number(n2);
+          }
+          
+          function multiplicacao() {
+            let n1 = document.getElementById("n1").value;
+            let n2 = document.getElementById("n2").value;
+            let resultado = document.getElementById("resultado");
+            resultado.value = Number(n1) * Number(n2);
+          }
+          
+          function divisao() {
+            let n1 = document.getElementById("n1").value;
+            let n2 = document.getElementById("n2").value;
+          
+            if (Number(n2) == 0) {
+              alert("Não é possível dividir por 0");
+              return;
+            }
+          
+            let resultado = document.getElementById("resultado");
+            resultado.value = Number(n1) / Number(n2);
+          }
+    </script>
+</body>
+</html>

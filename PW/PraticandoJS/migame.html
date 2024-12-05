@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini-game JS</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      h1 {
+        text-align: left;
+      }
+      p {
+        text-align: left;
+      }
+      ul {
+        text-align: left;
+      }
+      #game-area {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        margin: 20px auto;
+      }
+      .square {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        cursor: pointer;
+        border: 2px solid black;
+      }
+      #red {
+        background-color: red;
+        left: 10px;
+        top: 50px;
+      }
+      #blue {
+        background-color: blue;
+        left: 150px;
+        top: 50px;
+      }
+      #green {
+        background-color: green;
+        left: 300px;
+        top: 50px;
+      }
+      #message {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Praticando 4 - Mini-game JS</h1>
+    <p>Instruções:</p>
+    <ol>
+      <ul>
+        Clique em um dos quadrados coloridos.
+      </ul>
+      <ul>
+        Use as teclas
+        <strong>W, A, S, D</strong>
+        para movimentar o quadrado.
+      </ul>
+    </ol>
+    <img src="wasd.jpg" alt="" />
+    <div id="game-area">
+      <div
+        id="red"
+        class="square"
+        data-original-top="50"
+        data-original-left="10"
+      ></div>
+      <div
+        id="blue"
+        class="square"
+        data-original-top="50"
+        data-original-left="150"
+      ></div>
+      <div
+        id="green"
+        class="square"
+        data-original-top="50"
+        data-original-left="300"
+      ></div>
+    </div>
+    <div id="message"></div>
+    <script>
+      const squares = document.querySelectorAll(".square");
+      let selectedSquare = null; // Quadrado selecionado atualmente
+
+      // Adiciona evento de clique aos quadrados
+      squares.forEach((square) => {
+        square.addEventListener("click", () => {
+          const messageElement = document.getElementById("message");
+
+          if (selectedSquare && selectedSquare !== square) {
+            // Exibe mensagem se já houver um quadrado selecionado
+            messageElement.textContent = "Já há um quadrado selecionado!";
+            return;
+          }
+
+          if (selectedSquare === square) {
+            // Restaura posição original se clicar no mesmo quadrado
+            const originalTop = square.dataset.originalTop;
+            const originalLeft = square.dataset.originalLeft;
+            square.style.top = `${originalTop}px`;
+            square.style.left = `${originalLeft}px`;
+            selectedSquare = null; // Deseleciona o quadrado
+            messageElement.textContent = ""; // Limpa a mensagem
+          } else {
+            // Seleciona o quadrado clicado
+            selectedSquare = square;
+            messageElement.textContent = ""; // Limpa a mensagem
+          }
+        });
+      });
+
+      // Adiciona evento para capturar as teclas pressionadas
+      document.addEventListener("keydown", (event) => {
+        if (!selectedSquare) return; // Ignora se nenhum quadrado foi selecionado
+
+        const step = 10; // Quantidade de movimento em pixels
+        const key = event.key.toLowerCase(); // Converte a tecla para minúscula
+
+        // Pega os valores de posição do quadrado atual
+        const currentTop = parseInt(
+          window.getComputedStyle(selectedSquare).top
+        );
+        const currentLeft = parseInt(
+          window.getComputedStyle(selectedSquare).left
+        );
+
+        // Move o quadrado dependendo da tecla pressionada
+        switch (key) {
+          case "w": // Move para cima
+            selectedSquare.style.top = `${currentTop - step}px`;
+            break;
+          case "a": // Move para a esquerda
+            selectedSquare.style.left = `${currentLeft - step}px`;
+            break;
+          case "s": // Move para baixo
+            selectedSquare.style.top = `${currentTop + step}px`;
+            break;
+          case "d": // Move para a direita
+            selectedSquare.style.left = `${currentLeft + step}px`;
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>
