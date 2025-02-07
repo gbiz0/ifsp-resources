@@ -4,42 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <h1 id="texto1">Praticando 1 - Lâmpada</h1>
-    
-    <br>
-    <br>
+
+    <br />
+    <br />
 
     <div>
-        <img id="lampada" src="lampada.png" alt="lampada">
+      <img id="lampada" src="lampada.png" alt="lampada" />
     </div>
     <div>
-        <h2 id="texto2">Lâmpada Apagada</h2>
+      <h2 id="texto2">Lâmpada Apagada</h2>
     </div>
     <script>
-        var img = document.getElementById("lampada");
-        var body = document.body;
-        
-        
-        function lampada_acesa() {
-            img.setAttribute('src', 'lampada-acesa.png');
-            body.style.background = "white";
-            document.getElementById("texto1").style.color = "black";
-            document.getElementById("texto2").style.color = "black";
-            document.getElementById("texto2").textContent="Lampada Acesa";
-        };
-        
-        function lampada_apagada() {
-            img.setAttribute('src', 'lampada.png');
-            body.style.background = "black";
-            document.getElementById("texto1").style.color = "white";
-            document.getElementById("texto2").style.color = "white";
-            document.getElementById("texto2").textContent="Lampada Apagada";
-        };
-        
-        img.addEventListener('mouseover', lampada_acesa);
-        img.addEventListener('mouseout', lampada_apagada);
+      $(document).ready(function () {
+        const $lampada = $("#lampada");
+        const $body = $("body");
+        const $texto1 = $("#texto1");
+        const $texto2 = $("#texto2");
+
+        function lampadaAcesa() {
+          $lampada.attr("src", "lampada-acesa.png");
+          $body.css("background", "white");
+          $texto1.css("color", "black");
+          $texto2.css("color", "black").text("Lampada Acesa");
+        }
+
+        function lampadaApagada() {
+          $lampada.attr("src", "lampada.png");
+          $body.css("background", "black");
+          $texto1.css("color", "white");
+          $texto2.css("color", "white").text("Lampada Apagada");
+        }
+
+        $lampada.hover(lampadaAcesa, lampadaApagada);
+      });
     </script>
   </body>
 </html>
