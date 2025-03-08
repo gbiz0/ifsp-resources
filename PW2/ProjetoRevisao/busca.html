@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busca de Conteúdo</title>
+    <style>
+      body {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      }
+
+      .header {
+        background-color: #b0c4de;
+        padding: 10px;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      nav ul li {
+        margin: 0 15px;
+      }
+
+      nav ul li :hover {
+        background-color: #d3d3d3;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: black;
+      }
+
+      nav ul li a:hover {
+        text-decoration: underline;
+        color: black;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+      .banner {
+        background: url("https://electronica-basica.com/wp-content/uploads/2020/01/circuito-electronico.jpg")
+          no-repeat center center;
+        background-size: cover;
+        padding: 50px 0;
+        color: orange;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .search-box {
+        margin-top: 10px;
+      }
+
+      .search-box input {
+        padding: 10px;
+        width: 250px;
+        font-size: 16px;
+      }
+
+      .search-box button {
+        padding: 10px;
+        font-size: 16px;
+        background-color: white;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+
+      .content {
+        margin: 30px;
+        text-align: left;
+        padding-left: 50px;
+      }
+
+      .content ul {
+        list-style: square;
+      }
+
+      .content a {
+        text-decoration: none;
+        color: blue;
+      }
+
+      .highlight {
+        background-color: green;
+        color: white;
+        padding: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="busca.html">Busca</a></li>
+          <li><a href="form.html">Formulário/Tabela</a></li>
+          <li><a href="post.html">Postagem c/ imagem</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="banner">
+      <h1>Busca de conteúdo</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Digite para buscar" />
+        <button>Pesquisar</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <ul>
+        <li><a href="https://gbizo.com/" target="_blank">Sobre mim</a></li>
+        <li>
+          <a href="https://vtp.ifsp.edu.br/" target="_blank"
+            >Site do <span class="highlight">IFSP Campus Votuporanga</span></a
+          >
+          (nova aba)
+        </li>
+        <li>
+          <a href="https://vtp.ifsp.edu.br/images/BSI/PPC_BSI_Votuporanga.pdf" target="_blank"
+            >PPC Atualizado do Curso de BSI</a
+          >
+          (nova aba)
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
