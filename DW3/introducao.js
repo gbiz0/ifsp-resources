@@ -1,0 +1,5 @@
+var superHeroes = '{"squadName": "Super hero squad", "active": true,"members": [{"name": "Molecule Man","age": 29,"powers": ["Radiation resistance", "Turning tiny"]},{"name": "Madame Uppercut","age": 39,"powers": ["Million tonne punch","Damage resistance","Superhuman reflexes"]}]}';
+
+var superHeroesJSON = JSON.parse(superHeroes);
+
+console.log("superHeroesJSON: " + superHeroesJSON.members[1].powers[1]);
