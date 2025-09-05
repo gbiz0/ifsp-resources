@@ -1,0 +1,14 @@
+{
+  "roots": [
+    "user_data_analyzer"
+  ],
+  "packages": [
+    {
+      "name": "user_data_analyzer",
+      "version": "1.0.0",
+      "dependencies": [],
+      "devDependencies": []
+    }
+  ],
+  "configVersion": 1
+}
