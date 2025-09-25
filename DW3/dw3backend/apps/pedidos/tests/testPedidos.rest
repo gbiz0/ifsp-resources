@@ -1,0 +1,68 @@
+### Necessário para pegar o token
+### Post
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "UserName": "qwe",
+    "Password": "qwe"
+}
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+@username = {{loginAutenticado.response.body.$.username}}
+
+### Buscar todos os pedidos
+GET http://localhost:40000/GetAllPedidos HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+
+}
+
+### Buscar pedido por ID
+GET http://localhost:40000/GetPedidoByID HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "pedidoid": 8
+}
+
+### Inserir pedido
+POST http://localhost:40000/InsertPedidos HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "numero": "777",
+    "data": "2025-09-23",
+    "valortotal": "1570.00",
+    "clienteid": "1",
+    "deleted": false,
+    "nome": "Gustavo Bizo"
+}
+
+### Atualizar pedido
+POST http://localhost:40000/UpdatePedidos HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "pedidoid": "8",
+      "numero": "4444",
+      "data": "2025-09-23T03:00:00.000Z",
+      "valortotal": "1599.00",
+      "clienteid": "1",
+      "deleted": false
+}
+
+### Deletar pedido
+POST http://localhost:40000/DeletePedidos HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "pedidoid": 8
+}

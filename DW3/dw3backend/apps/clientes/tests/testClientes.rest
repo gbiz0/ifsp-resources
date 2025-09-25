@@ -1,0 +1,65 @@
+### Post  
+# @name loginAutenticado  
+POST http://localhost:40000/Login HTTP/1.1  
+content-type: application/json  
+  
+{      
+    "UserName": "qwe",  
+    "Password": "qwe"  
+}  
+### Token  
+@accessToken = {{loginAutenticado.response.body.$.token}}  
+@username = {{loginAutenticado.response.body.$.username}}  
+
+### Buscar todos os clientes
+GET http://localhost:40000/GetAllClientes HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{      
+    
+}  
+
+### Buscar cliente por ID
+GET http://localhost:40000/GetClienteById HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{     
+    "clienteid": "1"
+}  
+
+### Inserir cliente
+POST http://localhost:40000/InsertClientes HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+  
+{      
+    "codigo": "123456789",
+    "nome": "José",
+    "endereco": "rua tal",
+    "ativo": true
+}  
+
+### Atualizar cliente
+POST http://localhost:40000/UpdateClientes HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{
+    "clienteid": "1",
+    "codigo": "987654321",
+    "nome": "Douglas",
+    "endereco": "Rua A1",
+    "ativo": true,
+    "deleted": false
+}
+
+### Deletar cliente
+POST http://localhost:40000/DeleteClientes HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{      
+    "clienteid": 2
+} 
