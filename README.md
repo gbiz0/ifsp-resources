@@ -13,6 +13,7 @@ O objetivo é centralizar e facilitar o acesso aos conteúdos estudados durante 
 - [Gestão Ágil de Projetos](https://github.com/gbiz0/ifsp-resources/tree/main/GA)
 - [Linguagem de Programação](https://github.com/gbiz0/ifsp-resources/tree/main/LP)
 - [Programação Orientada a Objetos](https://github.com/gbiz0/ifsp-resources/tree/main/POO)
+- [Segurança da Informação](https://github.com/gbiz0/ifsp-resources/tree/main/SI)
 
 ## como usar
 
