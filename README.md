@@ -5,6 +5,7 @@ O objetivo é centralizar e facilitar o acesso aos conteúdos estudados durante 
 
 ## roadmap
 
+- [Automação e Robótica](https://github.com/gbiz0/ifsp-resources/tree/main/AURB)
 - [Desenvolvimento Web I](https://github.com/gbiz0/ifsp-resources/tree/main/DW1)
 - [Desenvolvimento Web II](https://github.com/gbiz0/ifsp-resources/tree/main/DW2)
 - [Desenvolvimento Web III](https://github.com/gbiz0/ifsp-resources/tree/main/DW3)
