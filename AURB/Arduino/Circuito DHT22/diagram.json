@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "author": "Gustavo Bizo",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 183, "left": -125.4, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -28.5, "left": -245.4, "attrs": {} }
+  ],
+  "connections": [
+    [ "uno:5V", "dht1:VCC", "red", [ "v28.7", "h-265" ] ],
+    [ "dht1:GND", "uno:GND.2", "black", [ "v345.6", "h245.7" ] ],
+    [ "dht1:SDA", "uno:8", "green", [ "v57.6", "h268.5" ] ]
+  ],
+  "dependencies": {}
+}

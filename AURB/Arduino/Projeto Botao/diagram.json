@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "author": "Osvandre Martins",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 39, "left": -0.6, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -51.4,
+      "left": 134.4,
+      "attrs": { "color": "green", "bounce": "0" }
+    }
+  ],
+  "connections": [
+    [ "uno:GND.1", "btn2:2.l", "black", [ "v0" ] ],
+    [ "btn2:1.l", "uno:5V", "red", [ "h-182.4", "v326.4", "h207.4" ] ],
+    [ "uno:2", "btn2:2.r", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

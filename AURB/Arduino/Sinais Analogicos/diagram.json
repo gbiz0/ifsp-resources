@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "author": "Gustavo Bizo Jardim",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -258.6, "left": -471, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -174.1, "left": -662.6, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -416.4,
+      "left": -370.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -312.85,
+      "left": -336,
+      "rotate": 90,
+      "attrs": { "value": "220000" }
+    }
+  ],
+  "connections": [
+    [ "uno:5V", "pot1:VCC", "red", [ "v28.7", "h-302.6" ] ],
+    [ "uno:GND.2", "pot1:GND", "black", [ "v67.1", "h-332.1" ] ],
+    [ "pot1:SIG", "uno:A0", "green", [ "v86.4", "h360.6" ] ],
+    [ "led1:C", "uno:GND.1", "black", [ "v67.2", "h0.1" ] ],
+    [ "r1:1", "led1:A", "green", [ "v-18.35", "h-38.95" ] ],
+    [ "r1:2", "uno:9", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
